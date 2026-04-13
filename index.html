@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Neo Studio Pro | Creative Eye</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.2);
+            --secondary: #ec4899;
+            --secondary-glow: rgba(236, 72, 153, 0.2);
+            --bg: #020617;
+            --card: #0f172a;
+            --text: #f8fafc;
+            --border: #1e293b;
+            --success: #10b981;
+            --muted: #64748b;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            margin: 0; 
+            padding: 16px;
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column;
+        }
+
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            width: 100%; 
+            flex: 1;
+        }
+
+        header { 
+            text-align: center; 
+            margin: 16px 0 24px 0; 
+        }
+        
+        header h1 { 
+            font-size: 2rem; 
+            margin: 0; 
+            font-weight: 800; 
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #fff 30%, var(--primary) 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        header p { 
+            color: var(--muted); 
+            font-size: 0.85rem; 
+            margin-top: 6px; 
+            font-weight: 500;
+        }
+
+        .tabs { 
+            display: flex; 
+            gap: 12px; 
+            background: rgba(30, 41, 59, 0.6);
+            padding: 6px; 
+            border-radius: 60px; 
+            margin-bottom: 28px;
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--border);
+        }
+        
+        .tab-btn { 
+            flex: 1; 
+            padding: 12px 8px; 
+            border: none; 
+            border-radius: 40px; 
+            background: transparent; 
+            color: #94a3b8; 
+            cursor: pointer; 
+            font-weight: 700; 
+            font-size: 0.85rem; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            transition: all 0.2s ease;
+            font-family: inherit;
+            position: relative;
+        }
+
+        .tab-btn.active { 
+            background: var(--primary); 
+            color: white; 
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+        
+        .tab-btn.enhance-tab.active { 
+            background: var(--secondary); 
+            box-shadow: 0 4px 12px var(--secondary-glow);
+        }
+
+        .beta-badge {
+            background: var(--secondary);
+            color: white; 
+            font-size: 9px; 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+            position: absolute;
+            top: -5px;
+            right: 10px;
+            font-weight: 800;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .workspace { 
+            display: none; 
+            background: var(--card); 
+            border-radius: 28px; 
+            padding: 20px; 
+            border: 1px solid var(--border); 
+            gap: 24px; 
+        }
+        
+        .workspace.active { 
+            display: grid; 
+        }
+
+        @media (min-width: 820px) { 
+            .workspace { 
+                grid-template-columns: 300px 1fr; 
+                padding: 28px; 
+            } 
+        }
+
+        .sidebar { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+        }
+        
+        .upload-card { 
+            border: 2px dashed #334155; 
+            padding: 32px 16px; 
+            border-radius: 24px; 
+            text-align: center; 
+            cursor: pointer; 
+            background: rgba(99, 102, 241, 0.05);
+            transition: all 0.2s;
+        }
+        
+        .upload-card:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .upload-card p {
+            margin: 10px 0 0;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .control-group label { 
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px; 
+            font-weight: 800; 
+            color: var(--muted); 
+            text-transform: uppercase; 
+            margin-bottom: 8px; 
+            letter-spacing: 0.5px;
+        }
+        
+        select { 
+            width: 100%; 
+            padding: 12px 14px; 
+            background: #020617; 
+            border: 1px solid #334155; 
+            color: white; 
+            border-radius: 16px; 
+            font-size: 14px; 
+            font-weight: 500;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn { 
+            width: 100%; 
+            padding: 14px 18px; 
+            border-radius: 40px; 
+            border: none; 
+            font-weight: 800; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px; 
+            transition: all 0.2s;
+        }
+        
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-secondary { background: var(--secondary); color: white; }
+        .btn-success { background: var(--success); color: white; margin-top: 20px; text-decoration: none; display: none; }
+
+        .preview-pane {
+            background: #000000;
+            border-radius: 24px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            min-height: 340px;
+            max-height: 55vh;
+            border: 1px solid var(--border);
+        }
+        
+        .checkerboard { 
+            background-image: 
+                linear-gradient(45deg, #1e293b 25%, transparent 25%),
+                linear-gradient(-45deg, #1e293b 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #1e293b 75%),
+                linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+            background-size: 20px 20px;
+            background-color: #0f172a;
+        }
+
+        img, canvas { max-width: 100%; max-height: 100%; object-fit: contain; display: none; }
+        .has-src { display: block !important; }
+
+        .placeholder-ui { text-align: center; color: #475569; }
+        .placeholder-ui i { width: 48px; height: 48px; margin-bottom: 12px; opacity: 0.6; }
+
+        .loader { 
+            display: none; 
+            position: absolute; 
+            inset: 0; 
+            background: rgba(2, 6, 23, 0.92); 
+            z-index: 20; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 24px;
+        }
+        
+        .spin { animation: rotate 1s linear infinite; width: 40px; height: 40px; color: var(--primary); }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        footer { text-align: center; padding: 32px 20px 20px; margin-top: 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; }
+        footer .owner { color: var(--text); display: block; margin-bottom: 6px; font-weight: 800; font-size: 0.9rem; }
+
+        .error-msg { background: rgba(239, 68, 68, 0.15); border-left: 3px solid #ef4444; padding: 8px 12px; border-radius: 12px; font-size: 0.75rem; margin-top: 8px; display: none; }
+
+        @media (max-width: 500px) {
+            .tab-btn span:not(.beta-badge) { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Neo Studio <span id="titleTag" style="color:var(--primary)">Pro</span></h1>
+        <p>AI Background Remover & Smart Upscaler | by Sonal Jayawardhana</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" id="tabRem" onclick="switchTab('remove')">
+            <i data-lucide="scissors"></i> <span>Background Remover</span>
+        </button>
+        <button class="tab-btn enhance-tab" id="tabEnh" onclick="switchTab('enhance')">
+            <i data-lucide="zap"></i> <span>AI Enhancer</span> <span class="beta-badge">BETA</span>
+        </button>
+    </div>
+
+    <div id="panelRem" class="workspace active">
+        <div class="sidebar">
+            <div class="upload-card" onclick="document.getElementById('inputRem').click()">
+                <i data-lucide="image-plus"></i>
+                <p>Upload image (PNG/JPG)</p>
+                <input type="file" id="inputRem" hidden accept="image/*">
+            </div>
+            <div class="control-group">
+                <label><i data-lucide="palette" size="14"></i> Background Output</label>
+                <select id="selFormat">
+                    <option value="transparent">Transparent (PNG)</option>
+                    <option value="white">Solid White Background</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" id="runRem" onclick="processRemove()" disabled>
+                <i data-lucide="wand-2"></i> Remove Background
+            </button>
+            <div id="remError" class="error-msg"></div>
+        </div>
+        <div class="preview-pane checkerboard">
+            <div class="loader" id="loadRem">
+                <i data-lucide="loader-circle" class="spin"></i>
+                <p style="margin-top:12px; font-weight:600;">AI Removing Background...</p>
+            </div>
+            <div id="phRem" class="placeholder-ui">
+                <i data-lucide="image"></i>
+                <p>No image selected<br><span style="font-size:12px">Upload an image to begin</span></p>
+            </div>
+            <img id="outRem" alt="Background removed preview">
+        </div>
+    </div>
+
+    <div id="panelEnh" class="workspace">
+        <div class="sidebar">
+            <div class="upload-card" onclick="document.getElementById('inputEnh').click()">
+                <i data-lucide="zap"></i>
+                <p>Upload for Enhancement</p>
+                <input type="file" id="inputEnh" hidden accept="image/*">
+            </div>
+            <div class="control-group">
+                <label><i data-lucide="trending-up" size="14"></i> Upscale Factor</label>
+                <select id="selScale">
+                    <option value="2">2.0x Super HD (Recommended)</option>
+                    <option value="1.5">1.5x Smart Sharp</option>
+                </select>
+            </div>
+            <button class="btn btn-secondary" id="runEnh" onclick="processEnhance()" disabled>
+                <i data-lucide="sparkles"></i> Enhance & Upscale
+            </button>
+            <div id="enhError" class="error-msg"></div>
+        </div>
+        <div class="preview-pane" style="background: #0a0a1a;">
+            <div class="loader" id="loadEnh">
+                <i data-lucide="loader-circle" class="spin" style="color:var(--secondary)"></i>
+                <p style="margin-top:12px;">Upscaling with AI smoothing...</p>
+            </div>
+            <div id="phEnh" class="placeholder-ui">
+                <i data-lucide="eye"></i>
+                <p>AI Enhanced Preview<br><span style="font-size:12px">Upload to see magic</span></p>
+            </div>
+            <canvas id="outEnh" style="border-radius:20px;"></canvas>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a id="dlBtn" class="btn btn-success" download><i data-lucide="download"></i> Download Result (PNG)</a>
+    </div>
+</div>
+
+<footer>
+    <span class="owner">Sonal Jayawardhana</span>
+    &copy; 2026 <a href="https://sonalrashmika8-sketch.github.io/CreativeEye/" target="_blank">Creative Eye Studio</a> — Precision AI Tools
+</footer>
+
+<script>
+    const API_KEY = 'zZ8FTuLC8Dn3QJNjH5H2cPgk'; 
+    let currentDownloadUrl = null;
+    
+    function refreshIcons() {
+        if (typeof lucide !== 'undefined' && lucide.createIcons) lucide.createIcons();
+    }
+    
+    window.switchTab = function(mode) {
+        const titleSpan = document.getElementById('titleTag');
+        const downloadBtn = document.getElementById('dlBtn');
+        downloadBtn.style.display = 'none';
+        
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.workspace').forEach(ws => ws.classList.remove('active'));
+        
+        if (mode === 'remove') {
+            document.getElementById('tabRem').classList.add('active');
+            document.getElementById('panelRem').classList.add('active');
+            titleSpan.style.color = 'var(--primary)';
+        } else {
+            document.getElementById('tabEnh').classList.add('active');
+            document.getElementById('panelEnh').classList.add('active');
+            titleSpan.style.color = 'var(--secondary)';
+        }
+        refreshIcons();
+    };
+
+    const inputRem = document.getElementById('inputRem');
+    const outRemImg = document.getElementById('outRem');
+    const runRemBtn = document.getElementById('runRem');
+    
+    inputRem.onchange = function() {
+        if (this.files && this.files[0]) {
+            const previewUrl = URL.createObjectURL(this.files[0]);
+            outRemImg.src = previewUrl;
+            outRemImg.classList.add('has-src');
+            document.getElementById('phRem').style.display = 'none';
+            runRemBtn.disabled = false;
+        }
+    };
+    
+    window.processRemove = async function() {
+        const loader = document.getElementById('loadRem');
+        loader.style.display = 'flex';
+        const formData = new FormData();
+        formData.append('image_file', inputRem.files[0]);
+        if (document.getElementById('selFormat').value === 'white') formData.append('bg_color', '#FFFFFF');
+        
+        try {
+            const response = await fetch('https://api.remove.bg/v1.0/removebg', {
+                method: 'POST',
+                headers: { 'X-Api-Key': API_KEY },
+                body: formData
+            });
+            if (!response.ok) throw new Error("API Error");
+            const blob = await response.blob();
+            const resultUrl = URL.createObjectURL(blob);
+            outRemImg.src = resultUrl;
+            setupDownload(resultUrl, 'removed_bg.png');
+        } catch (err) {
+            alert("Error: " + err.message);
+        } finally {
+            loader.style.display = 'none';
+        }
+    };
+
+    const inputEnh = document.getElementById('inputEnh');
+    const outCanvas = document.getElementById('outEnh');
+    const runEnhBtn = document.getElementById('runEnh');
+    let enhImg = null;
+
+    inputEnh.onchange = function() {
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    outCanvas.width = img.width; outCanvas.height = img.height;
+                    outCanvas.getContext('2d').drawImage(img, 0, 0);
+                    outCanvas.classList.add('has-src');
+                    document.getElementById('phEnh').style.display = 'none';
+                    enhImg = img;
+                    runEnhBtn.disabled = false;
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
+    };
+
+    window.processEnhance = function() {
+        const loader = document.getElementById('loadEnh');
+        loader.style.display = 'flex';
+        const scale = parseFloat(document.getElementById('selScale').value);
+        outCanvas.width = enhImg.width * scale;
+        outCanvas.height = enhImg.height * scale;
+        const ctx = outCanvas.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(enhImg, 0, 0, outCanvas.width, outCanvas.height);
+        setupDownload(outCanvas.toDataURL(), 'enhanced.png');
+        loader.style.display = 'none';
+    };
+
+    function setupDownload(url, name) {
+        const dlBtn = document.getElementById('dlBtn');
+        dlBtn.href = url;
+        dlBtn.download = name;
+        dlBtn.style.display = 'inline-flex';
+        refreshIcons();
+    }
+
+    refreshIcons();
+</script>
+</body>
+</html>
