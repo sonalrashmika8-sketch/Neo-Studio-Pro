@@ -52,7 +52,7 @@
         }
         
         header h1 { 
-            font-size: 2rem; 
+            font-size: 2.5rem; 
             margin: 0; 
             font-weight: 800; 
             letter-spacing: -1px;
@@ -64,7 +64,7 @@
         
         header p { 
             color: var(--muted); 
-            font-size: 0.85rem; 
+            font-size: 0.95rem; 
             margin-top: 6px; 
             font-weight: 500;
         }
@@ -82,18 +82,18 @@
         
         .tab-btn { 
             flex: 1; 
-            padding: 12px 8px; 
+            padding: 14px 8px; 
             border: none; 
             border-radius: 40px; 
             background: transparent; 
             color: #94a3b8; 
             cursor: pointer; 
             font-weight: 700; 
-            font-size: 0.85rem; 
+            font-size: 0.95rem; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            gap: 8px; 
+            gap: 10px; 
             transition: all 0.2s ease;
             font-family: inherit;
             position: relative;
@@ -138,7 +138,7 @@
 
         @media (min-width: 820px) { 
             .workspace { 
-                grid-template-columns: 300px 1fr; 
+                grid-template-columns: 320px 1fr; 
                 padding: 28px; 
             } 
         }
@@ -151,7 +151,7 @@
         
         .upload-card { 
             border: 2px dashed #334155; 
-            padding: 32px 16px; 
+            padding: 40px 16px; 
             border-radius: 24px; 
             text-align: center; 
             cursor: pointer; 
@@ -165,9 +165,10 @@
         }
 
         .upload-card p {
-            margin: 10px 0 0;
-            font-size: 0.85rem;
+            margin: 12px 0 0;
+            font-size: 0.9rem;
             font-weight: 500;
+            color: var(--text);
         }
         
         .control-group label { 
@@ -184,12 +185,12 @@
         
         select { 
             width: 100%; 
-            padding: 12px 14px; 
+            padding: 14px 16px; 
             background: #020617; 
             border: 1px solid #334155; 
             color: white; 
             border-radius: 16px; 
-            font-size: 14px; 
+            font-size: 15px; 
             font-weight: 500;
             cursor: pointer;
             font-family: inherit;
@@ -197,7 +198,7 @@
 
         .btn { 
             width: 100%; 
-            padding: 14px 18px; 
+            padding: 16px 18px; 
             border-radius: 40px; 
             border: none; 
             font-weight: 800; 
@@ -207,6 +208,7 @@
             justify-content: center; 
             gap: 10px; 
             transition: all 0.2s;
+            font-size: 1rem;
         }
         
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -222,8 +224,8 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            min-height: 340px;
-            max-height: 55vh;
+            min-height: 380px;
+            max-height: 60vh;
             border: 1px solid var(--border);
         }
         
@@ -241,7 +243,7 @@
         .has-src { display: block !important; }
 
         .placeholder-ui { text-align: center; color: #475569; }
-        .placeholder-ui i { width: 48px; height: 48px; margin-bottom: 12px; opacity: 0.6; }
+        .placeholder-ui i { width: 64px; height: 64px; margin-bottom: 16px; opacity: 0.6; }
 
         .loader { 
             display: none; 
@@ -255,16 +257,72 @@
             border-radius: 24px;
         }
         
-        .spin { animation: rotate 1s linear infinite; width: 40px; height: 40px; color: var(--primary); }
+        .spin { animation: rotate 1s linear infinite; width: 48px; height: 48px; color: var(--primary); }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        footer { text-align: center; padding: 32px 20px 20px; margin-top: 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; }
-        footer .owner { color: var(--text); display: block; margin-bottom: 6px; font-weight: 800; font-size: 0.9rem; }
+        /* Features Section */
+        .features-section {
+            margin-top: 50px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
 
-        .error-msg { background: rgba(239, 68, 68, 0.15); border-left: 3px solid #ef4444; padding: 8px 12px; border-radius: 12px; font-size: 0.75rem; margin-top: 8px; display: none; }
+        .feature-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px var(--primary-glow);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon-container {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(30, 41, 59, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            border: 1px solid var(--border);
+        }
+
+        .feature-card i {
+            width: 32px;
+            height: 32px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        footer { text-align: center; padding: 40px 20px 30px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+        footer .owner { color: var(--text); display: block; margin-bottom: 8px; font-weight: 800; font-size: 0.95rem; }
+
+        .error-msg { background: rgba(239, 68, 68, 0.15); border-left: 3px solid #ef4444; padding: 10px 14px; border-radius: 12px; font-size: 0.8rem; margin-top: 10px; display: none; color: #f87171;}
 
         @media (max-width: 500px) {
             .tab-btn span:not(.beta-badge) { display: none; }
+            header h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -273,7 +331,7 @@
 <div class="container">
     <header>
         <h1>Neo Studio <span id="titleTag" style="color:var(--primary)">Pro</span></h1>
-        <p>AI Background Remover & Smart Upscaler | by Sonal Jayawardhana</p>
+        <p>Advanced AI-Powered Creative Toolkit | by Sonal Jayawardhana</p>
     </header>
 
     <div class="tabs">
@@ -288,7 +346,7 @@
     <div id="panelRem" class="workspace active">
         <div class="sidebar">
             <div class="upload-card" onclick="document.getElementById('inputRem').click()">
-                <i data-lucide="image-plus"></i>
+                <i data-lucide="image-plus" size="48" style="opacity: 0.7;"></i>
                 <p>Upload image (PNG/JPG)</p>
                 <input type="file" id="inputRem" hidden accept="image/*">
             </div>
@@ -307,11 +365,11 @@
         <div class="preview-pane checkerboard">
             <div class="loader" id="loadRem">
                 <i data-lucide="loader-circle" class="spin"></i>
-                <p style="margin-top:12px; font-weight:600;">AI Removing Background...</p>
+                <p style="margin-top:16px; font-weight:700; font-size: 1.1rem;">AI Removing Background...</p>
             </div>
             <div id="phRem" class="placeholder-ui">
                 <i data-lucide="image"></i>
-                <p>No image selected<br><span style="font-size:12px">Upload an image to begin</span></p>
+                <p>No image selected<br><span style="font-size:14px">Upload an image to begin</span></p>
             </div>
             <img id="outRem" alt="Background removed preview">
         </div>
@@ -320,7 +378,7 @@
     <div id="panelEnh" class="workspace">
         <div class="sidebar">
             <div class="upload-card" onclick="document.getElementById('inputEnh').click()">
-                <i data-lucide="zap"></i>
+                <i data-lucide="zap" size="48" style="opacity: 0.7;"></i>
                 <p>Upload for Enhancement</p>
                 <input type="file" id="inputEnh" hidden accept="image/*">
             </div>
@@ -339,27 +397,59 @@
         <div class="preview-pane" style="background: #0a0a1a;">
             <div class="loader" id="loadEnh">
                 <i data-lucide="loader-circle" class="spin" style="color:var(--secondary)"></i>
-                <p style="margin-top:12px;">Upscaling with AI smoothing...</p>
+                <p style="margin-top:16px; font-weight:700; font-size: 1.1rem;">Upscaling with AI smoothing...</p>
             </div>
             <div id="phEnh" class="placeholder-ui">
                 <i data-lucide="eye"></i>
-                <p>AI Enhanced Preview<br><span style="font-size:12px">Upload to see magic</span></p>
+                <p>AI Enhanced Preview<br><span style="font-size:14px">Upload to see magic</span></p>
             </div>
             <canvas id="outEnh" style="border-radius:20px;"></canvas>
         </div>
     </div>
 
-    <div style="text-align: center; margin-top: 20px;">
+    <div style="text-align: center; margin-top: 30px;">
         <a id="dlBtn" class="btn btn-success" download><i data-lucide="download"></i> Download Result (PNG)</a>
+    </div>
+
+    <div class="features-section">
+        <div class="feature-card">
+            <div class="feature-icon-container">
+                <i data-lucide="zap" style="color: var(--secondary);"></i>
+            </div>
+            <h3>Instant Processing</h3>
+            <p>Remove backgrounds and enhance photos in seconds with advanced AI speed.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon-container">
+                <i data-lucide="target" style="color: #60a5fa;"></i>
+            </div>
+            <h3>Accurate Detection</h3>
+            <p>Our powerful AI flawlessly recognizes complex edges and intricate details perfectly.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon-container">
+                <i data-lucide="image" style="color: var(--success);"></i>
+            </div>
+            <h3>High Quality</h3>
+            <p>Download clean, transparent PNGs with perfectly defined, crisp edges every time.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon-container">
+                <i data-lucide="user-x" style="color: #a78bfa;"></i>
+            </div>
+            <h3>No Sign-up Needed</h3>
+            <p>Start creating immediately - no account or personal registration required.</p>
+        </div>
     </div>
 </div>
 
 <footer>
     <span class="owner">Sonal Jayawardhana</span>
-    &copy; 2026 <a href="https://sonalrashmika8-sketch.github.io/CreativeEye/" target="_blank">Creative Eye Studio</a> — Precision AI Tools
+    &copy; 2026 <a href="https://sonalrashmika8-sketch.github.io/CreativeEye/" target="_blank">Creative Eye Studio</a> — Premium AI Creative Tools
 </footer>
 
 <script>
+    // Lucide Icon Kit required: lucide.js (v0.x)
     const API_KEY = 'zZ8FTuLC8Dn3QJNjH5H2cPgk'; 
     let currentDownloadUrl = null;
     
@@ -370,7 +460,12 @@
     window.switchTab = function(mode) {
         const titleSpan = document.getElementById('titleTag');
         const downloadBtn = document.getElementById('dlBtn');
+        const remError = document.getElementById('remError');
+        const enhError = document.getElementById('enhError');
+        
         downloadBtn.style.display = 'none';
+        remError.style.display = 'none';
+        enhError.style.display = 'none';
         
         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
         document.querySelectorAll('.workspace').forEach(ws => ws.classList.remove('active'));
@@ -387,26 +482,41 @@
         refreshIcons();
     };
 
+    // Remove BG Logic
     const inputRem = document.getElementById('inputRem');
     const outRemImg = document.getElementById('outRem');
     const runRemBtn = document.getElementById('runRem');
+    const remError = document.getElementById('remError');
     
     inputRem.onchange = function() {
+        remError.style.display = 'none';
         if (this.files && this.files[0]) {
             const previewUrl = URL.createObjectURL(this.files[0]);
             outRemImg.src = previewUrl;
             outRemImg.classList.add('has-src');
             document.getElementById('phRem').style.display = 'none';
             runRemBtn.disabled = false;
+        } else {
+            runRemBtn.disabled = true;
         }
     };
     
     window.processRemove = async function() {
         const loader = document.getElementById('loadRem');
+        const downloadBtn = document.getElementById('dlBtn');
+        const originalFile = inputRem.files[0];
+
         loader.style.display = 'flex';
+        downloadBtn.style.display = 'none';
+        remError.style.display = 'none';
+        runRemBtn.disabled = true;
+
         const formData = new FormData();
-        formData.append('image_file', inputRem.files[0]);
-        if (document.getElementById('selFormat').value === 'white') formData.append('bg_color', '#FFFFFF');
+        formData.append('image_file', originalFile);
+        formData.append('size', 'auto');
+        if (document.getElementById('selFormat').value === 'white') {
+            formData.append('bg_color', '#FFFFFF');
+        }
         
         try {
             const response = await fetch('https://api.remove.bg/v1.0/removebg', {
@@ -414,54 +524,111 @@
                 headers: { 'X-Api-Key': API_KEY },
                 body: formData
             });
-            if (!response.ok) throw new Error("API Error");
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.errors[0].title || "API Processing Error");
+            }
+
             const blob = await response.blob();
             const resultUrl = URL.createObjectURL(blob);
             outRemImg.src = resultUrl;
-            setupDownload(resultUrl, 'removed_bg.png');
+            outRemImg.classList.add('has-src');
+            
+            setupDownload(resultUrl, originalFile.name.replace(/\.[^/.]+$/, "") + '_removed_bg.png');
+            
         } catch (err) {
-            alert("Error: " + err.message);
+            console.error(err);
+            remError.textContent = `❌ Error: ${err.message}. Please check your API key or image format.`;
+            remError.style.display = 'block';
         } finally {
             loader.style.display = 'none';
+            runRemBtn.disabled = false;
         }
     };
 
+    // Enhance Logic
     const inputEnh = document.getElementById('inputEnh');
     const outCanvas = document.getElementById('outEnh');
     const runEnhBtn = document.getElementById('runEnh');
+    const enhError = document.getElementById('enhError');
     let enhImg = null;
 
     inputEnh.onchange = function() {
+        enhError.style.display = 'none';
+        document.getElementById('dlBtn').style.display = 'none';
+        
         if (this.files && this.files[0]) {
+            runEnhBtn.disabled = false;
             const reader = new FileReader();
             reader.onload = (e) => {
                 const img = new Image();
                 img.onload = () => {
                     outCanvas.width = img.width; outCanvas.height = img.height;
-                    outCanvas.getContext('2d').drawImage(img, 0, 0);
+                    const ctx = outCanvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
                     outCanvas.classList.add('has-src');
                     document.getElementById('phEnh').style.display = 'none';
                     enhImg = img;
-                    runEnhBtn.disabled = false;
+                    refreshIcons();
                 };
                 img.src = e.target.result;
             };
             reader.readAsDataURL(this.files[0]);
+        } else {
+            runEnhBtn.disabled = true;
+            enhImg = null;
         }
     };
 
     window.processEnhance = function() {
+        if (!enhImg) return;
         const loader = document.getElementById('loadEnh');
-        loader.style.display = 'flex';
         const scale = parseFloat(document.getElementById('selScale').value);
-        outCanvas.width = enhImg.width * scale;
-        outCanvas.height = enhImg.height * scale;
-        const ctx = outCanvas.getContext('2d');
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(enhImg, 0, 0, outCanvas.width, outCanvas.height);
-        setupDownload(outCanvas.toDataURL(), 'enhanced.png');
-        loader.style.display = 'none';
+        const enhError = document.getElementById('enhError');
+        
+        loader.style.display = 'flex';
+        runEnhBtn.disabled = true;
+        enhError.style.display = 'none';
+
+        try {
+            const targetWidth = Math.round(enhImg.width * scale);
+            const targetHeight = Math.round(enhImg.height * scale);
+
+            // Safety check for extreme sizes
+            if (targetWidth * targetHeight > 50000000) { // Approx 50MP limit
+                throw new Error("Target resolution too high. Browser memory limit exceeded.");
+            }
+
+            outCanvas.width = targetWidth;
+            outCanvas.height = targetHeight;
+            const ctx = outCanvas.getContext('2d');
+            
+            // Set for quality upscaling
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            
+            ctx.drawImage(enhImg, 0, 0, targetWidth, targetHeight);
+            
+            // Safety timeout before getting data URL to ensure canvas update
+            setTimeout(() => {
+                try {
+                    const enhancedDataUrl = outCanvas.toDataURL('image/png', 1.0);
+                    setupDownload(enhancedDataUrl, 'enhanced_' + Date.now() + '.png');
+                    loader.style.display = 'none';
+                    runEnhBtn.disabled = false;
+                } catch(dataErr) {
+                    throw new Error("Could not export enhanced image: " + dataErr.message);
+                }
+            }, 50);
+
+        } catch (err) {
+            console.error(err);
+            enhError.textContent = `❌ Error: ${err.message}`;
+            enhError.style.display = 'block';
+            loader.style.display = 'none';
+            runEnhBtn.disabled = false;
+        }
     };
 
     function setupDownload(url, name) {
@@ -469,9 +636,11 @@
         dlBtn.href = url;
         dlBtn.download = name;
         dlBtn.style.display = 'inline-flex';
+        dlBtn.scrollIntoView({ behavior: 'smooth', block: 'end' });
         refreshIcons();
     }
 
+    // Initial icon load
     refreshIcons();
 </script>
 </body>
